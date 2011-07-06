@@ -1,7 +1,7 @@
 %%% ICFP 2006 contest VM
 
 -module(vm).
--author("Jim Menard, jimm@io.com").
+-author("Jim Menard, jim@jimmenard.com").
 -export([run/1, run/2]).
 -compile(export_all).                           % DEBUG
 
