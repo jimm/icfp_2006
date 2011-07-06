@@ -1,0 +1,123 @@
+* Intro
+
+I've concentrated on implementing the VM in a number of different languages.
+
+Note: *this file contains spoilers* for the contest.
+
+http://www.boundvariable.org
+
+http://www.toothycat.net/wiki/wiki.pl?ICFP
+
+http://nibot-lab.livejournal.com/tag/icfp
+
+* VM
+
+./vm codex.umz
+decryption key: (\b.bb)(\v.vv)06AAbvFCZs97P6bvhn
+** clojure
+
+(load-file "vm.clj")
+(ns jimm.vm)
+(use 'clojure.contrib.duck-streams)
+(with-open [w (writer "/tmp/jimm.out")] (binding [*debug-out* w] (run "sandmark.umz")))
+
+* Publications
+
+INTRO.LOG=200@1967|de1d287586bb3a3a2554c618757ef68
+INTRO.MUA=5@1967|bb4bfdf913f1d682722aa6544915319
+INTRO.OUT=5@1967|bab53fa137eab5ad2c4ea6c5fb5ffba
+INTRO.UMD=10@1967|e2af247033ba515da1a954a53948d75
+INTRO.QBC=10@1967|48e508f91924fcee8942269d848176a
+BASIC.MLC=100@1967|b3636b2bafc9ecd5f098125d48c45f5
+ADVTR.INC=5@1967|ebb2bc4e80b444bec485482057df728
+ADVTR.CMB=5@1967|07941d7beab4c215b2d360a81b7d6e8
+ADVTR.KEY=20@1967|09e6f786328b62da779433e891c60d1
+
+* Accounts
+
+  cd code
+  /bin/umodem hack.bas STOP
+  /bin/qbasic hack.bas
+  ls /home
+  ./hack.exe howie
+
+| login    | password      | language  |
+| ftd      | falderal90    |           |
+| knr      |               |           |
+| gardener |               |           |
+| guest    |               | QBasic    |
+| ohmega   | bidirectional |           |
+| yang     | U+262F        |           |
+| howie    | xyzzy         | adventure |
+| hmonk    | COMEFROM      | O'Cult    |
+| bbarker  |               |           |
+
+>: read /etc/passwd
+The /etc/passwd is some kind of lost inode. It reads:
+howie:xyzzy:Howard Curry:/home/howie
+yang:U+262F:Y Yang:/home/yang
+hmonk:COMEFROM:Harmonious Monk:/home/hmonk. 
+
+* Adventure
+
+don't need spring
+don't need pill
+don't need antenna
+need bolt for A-1920-IXB
+
+radio requires antenna and transistor (but wait: A-1920-IXB requires radio
+missing antenna)
+
+processor requires cache
+
+keypad requires motherboard and button
+
+motherboard requires screw and A-1920-IXB
+
+A-1920-IXB requires transistor, radio missing an antenna, bolt, and processor
+
+Solution:
+take bolt
+take spring
+inc spring
+take button
+take processor
+take pill
+inc pill
+take radio
+take cache
+take blue transistor
+c radio and blue transistor
+take antenna
+inc antenna
+take screw
+c cache and processor
+take motherboard
+c motherboard and screw
+take A-1920-IXB
+c A-1920-IXB and radio
+c A-1920-IXB and processor
+c A-1920-IXB and bolt
+take red transistor
+c A-1920-IXB and transistor
+take keypad
+c motherboard and A-1920-IXB
+c keypad and motherboard
+c keypad and button
+
+
+** note
+>: read note
+The note is written in a familiar hand. 
+It reads: Dear Self, I had to erase our memory to protect the
+truth. The Municipality has become more powerful than we had
+feared. Its Censory Engine has impeded the spread of information
+throughout our ranks. I've left two useful items for you here,
+but I had to disassemble them and scatter the pieces. Each piece
+may be assembled from the items at a single location. Repair the
+items and recover the blueprint from the Museum of Science and
+Industry; it will show you how to proceed. If you have trouble
+reading the blueprint, know that the Censory Engine blocks only
+your perception, not your actions. Have courage, my self, the
+abstraction is weak! P.S. SWITCH your GOGGLES!. Interestingly,
+this one is self-addressed.
