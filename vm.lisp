@@ -1,4 +1,8 @@
-(defstruct state (pc 0 :type integer) (registers #() :type array) (arrays #() :type array) running)
+(defstruct state
+  (pc 0 :type integer)
+  (registers #() :type array)
+  (arrays #() :type array)
+  running)
 
 (defmacro set-reg (state n val)
   `(progn (setf (aref (state-registers ,state) ,n) ,val)
@@ -20,6 +24,8 @@
   `(progn
      (setf (aref (aref (state-arrays ,state) ,n) ,i) ,val)
      state))
+
+;;; ================ loading ================
 
 ;; Load code from file and return new state containing code.
 (defun load-code (state file)
@@ -44,6 +50,8 @@
   (loop for i = (read-uint32 f)
         while i
         collect i))
+
+;;; ================ running ================
 
 (defun instruction-at-pc (state)
   (aref (nth-array state 0) (state-pc state)))
@@ -83,6 +91,8 @@
               (format t "~8x loadi    ~d, ~d   " (state-pc state) (loadi-a-reg ins) (loadi-const ins))
             (format t "~8x ~8a ~d, ~d, ~d" (state-pc state) msg a b c))
           (format t "~8t; regs = ~a~%" (state-registers state)))))))
+
+;;; ================ instructions ================
 
 ;; move
 ;; The register A receives the value in register B, unless the register C
@@ -177,9 +187,8 @@
 ;; The value in the register C is displayed on the console immediately. Only
 ;; values between and including 0 and 255 are allowed.
 (defun vmi-output (state instruction)
-  ; (debug-print state "output")
   (multiple-value-bind (a b c ra rb rc) (abc-from-instruction state instruction)
-    (format t "~c" (coerce rc 'character))
+    (format t "~c" (code-char rc))
     (force-output)
     state))
 
@@ -240,6 +249,8 @@
     vmi-load-program                    ; 12
     vmi-loadi                           ; 13
     ))
+
+;;; ================ loading and running ================
 
 (defun run-code (s)
   (loop for state = s
